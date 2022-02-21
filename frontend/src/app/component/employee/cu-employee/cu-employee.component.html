@@ -1,0 +1,52 @@
+<div class="container">
+    <h1>{{title}} Employee</h1>
+    <form [formGroup]="employeeFormGroup" (ngSubmit)="title == 'Create New' ? addEmployee() : updateEmployee()">
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+                <input pInputText class="form-control" type="text" id="name" required [(ngModel)]="employee.name" formControlName="name" placeholder="Enter name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="dob" class="col-sm-3 col-form-label">Date Of Birth</label>
+            <div class="col-sm-9">
+                <p-calendar id="dob" formControlName="dob" [ngModel]="employee.dob | date:'MM/dd/yyyy'" [showIcon]="true" placeholder="MM/dd/yyyy"></p-calendar>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="sex" class="col-sm-3 col-form-label">Sex</label>
+            <div class="col-sm-9">
+                <p-dropdown [options]="genderList" id="sex" [(ngModel)]="employee.sex" formControlName="sex" optionLabel="name" optionValue="code"></p-dropdown>
+            </div>
+        </div>    
+        <div class="form-group row">
+            <label for="numberInsurance" class="col-sm-3 col-form-label">Number Insurance</label>
+            <div class="col-sm-9">
+                <input pInputText type="text" class="form-control" [(ngModel)]="employee.numberInsurance" id="numberInsurance" required formControlName="numberInsurance" placeholder="Enter Number Insurance">
+            </div>
+        </div>  
+        <div class="form-group row">
+            <label for="address" class="col-sm-3 col-form-label">Address</label>
+            <div class="col-sm-9">
+                <input pInputText type="text" class="form-control" id="address" required [(ngModel)]="employee.address" formControlName="address" placeholder="Enter Address">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="phone" class="col-sm-3 col-form-label">Phone</label>
+            <div class="col-sm-9">
+                <input pInputText type="text" class="form-control" id="phone" required [(ngModel)]="employee.phone" formControlName="phone" placeholder="Enter Phone">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="type" class="col-sm-3 col-form-label">Type</label>
+            <div class="col-sm-9">
+                <p-dropdown [options]="typeList" [(ngModel)]="employee.type" formControlName="type" optionLabel="name" optionValue="code"></p-dropdown>
+            </div>
+        </div>
+        <div class="form-btn">
+            <button pButton type="submit" label="Submit"></button>
+        </div>
+    </form>
+</div>
+
+

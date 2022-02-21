@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Course Details</h1>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Code</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{training.code}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Name</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{training.name}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Start Date</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{training.startDate | ddMmYYYYDate}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>End Date</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{training.endDate | ddMmYYYYDate}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Status</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{training.status == 0 ? 'In Coming' : training.status == 1 ? 'In Progress' : 'Done'}}</span>
+        </div>
+    </div>
+    <div class="form-btn">
+        <button pButton type="submit" label="Back" (click)="goToTrainingList()"></button>
+    </div>
+</div>

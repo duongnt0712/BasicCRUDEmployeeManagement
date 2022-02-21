@@ -1,0 +1,51 @@
+<!-- <div class="container"> -->
+    <!-- <h1>Employee List</h1> -->
+    <p-table #dt1 [value]="(trainings)!" [paginator]="true" [rows]="rows" [(first)]="first" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadTrainings($event)"
+    [totalRecords]="totalRecords" [globalFilterFields]="['name']">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex btn-holder">
+                <button pButton type="button" class="p-button-secondary" icon="pi pi-plus" label="Add" routerLink="/training/add"></button>
+                <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input #searchInput pInputText type="text" (input)="onSearch(searchInput.value)" placeholder="Search" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>No.</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-training let-rowIndex="rowIndex">
+            <tr>
+                <td>{{rowIndex + 1}}</td>
+                <td>{{training.code}}</td>
+                <td>{{training.name }}</td>
+                <td>{{training.startDate | ddMmYYYYDate}}</td>
+                <td>{{training.endDate | ddMmYYYYDate}}</td>
+                <td>{{training.status == 0 ? 'Incoming' : training.status == 1 ?'In Progress' : 'Done'}}</td>
+                <td class="btn-action">
+                    <button pButton pRipple type="button" icon="pi pi-list" class="p-button-secondary" (click)="goToTrainingDetails(training.id)"></button>
+                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-success" (click)="updateTraining(training.id)"></button>
+                    <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-danger" (click)="deleteTraining(training.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="12">No courses found.</td>
+            </tr>
+        </ng-template>
+    </p-table>  
+    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+    
+    <p-toast position="bottom-right"></p-toast>
+<!-- </div> -->
+
+ 

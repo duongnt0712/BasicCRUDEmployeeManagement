@@ -1,0 +1,62 @@
+<div class="container">
+    <h1>Employee Details</h1>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Name</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{employee.name}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Date of Birth</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{employee.dob | ddMmYYYYDate}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Sex</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{employee.sex == 0 ? 'Male' : 'Female'}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Number Insurance</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{employee.numberInsurance}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Address</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{employee.address}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Phone</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{employee.phone}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <span>Type</span>
+        </div>
+        <div class="col-sm-7">
+            <span>{{employee.type == 0 ? 'Full-time' : 'Part-time'}}</span>
+        </div>
+    </div>
+    <div class="form-btn">
+        <button pButton type="submit" label="Back" (click)="goToEmployeeList()"></button>
+    </div>
+</div>

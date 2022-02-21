@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>{{title}} Course</h1>
+    <form [formGroup]="trainingFormGroup"x (ngSubmit)="title == 'Create New' ? addTraining() : updateTraining()">
+        <div class="form-group row">
+            <label for="code" class="col-sm-3 col-form-label">Code</label>
+            <div class="col-sm-9">
+                <input pInputText class="form-control" type="text" id="code" required [(ngModel)]="training.code" formControlName="code" placeholder="Enter code">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+                <input pInputText class="form-control" type="text" id="name" required [(ngModel)]="training.name" formControlName="name" placeholder="Enter name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="startDate" class="col-sm-3 col-form-label">Start Date</label>            
+            <div class="col-sm-9">
+                <p-calendar id="startDate" formControlName="startDate" view="date" [ngModel]="training.startDate | date:'MM/dd/yyyy'" [showIcon]="true" placeholder="MM/dd/yyyy"></p-calendar>
+            </div>
+        </div>    
+        <div class="form-group row">
+            <label for="endDate" class="col-sm-3 col-form-label">End Date</label>
+            <div class="col-sm-9">
+                <p-calendar id="endDate" formControlName="endDate" [ngModel]="training.endDate | date:'MM/dd/yyyy'" [showIcon]="true" placeholder="MM/dd/yyyy"></p-calendar>
+            </div>
+        </div>  
+        <div class="form-group row">
+            <label for="status" class="col-sm-3 col-form-label">Status</label>
+            <div class="col-sm-9">
+                <p-dropdown [options]="statusList" id="status" [(ngModel)]="training.status" formControlName="status" optionLabel="name" optionValue="code"></p-dropdown>
+            </div>
+        </div>
+        <div class="form-btn">
+            <button pButton class="p-button-secondary" type="button" (click)="goToTrainingList()" label="Cancel"></button>
+            <button pButton type="submit" label="Submit"></button>            
+        </div>
+    </form>
+</div>
+
+

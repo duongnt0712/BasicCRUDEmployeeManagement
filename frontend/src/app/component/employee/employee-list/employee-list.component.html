@@ -1,0 +1,55 @@
+<!-- <div class="container"> -->
+    <!-- <h1>Employee List</h1> -->
+    <p-table #dt1 [value]="(employees)!" [paginator]="true" [rows]="rows" [(first)]="first" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadEmployees($event)"
+    [totalRecords]="totalRecords" [rowsPerPageOptions]="rowsPerPageOptions" [globalFilterFields]="['name']">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex btn-holder">
+                <button pButton type="button" class="p-button-secondary" icon="pi pi-plus" label="Add" routerLink="/employee/add"></button>
+                <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Date Of Birth</th>
+                <th>Sex</th>
+                <th>Number Insurance</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-employee let-rowIndex="rowIndex">
+            <tr>
+                <td>{{rowIndex + 1}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.dob | ddMmYYYYDate}}</td>
+                <td>{{employee.sex == 0 ? 'Male' : 'Female'}}</td>
+                <td>{{employee.numberInsurance}}</td>
+                <td>{{employee.address}}</td>
+                <td>{{employee.phone}}</td>
+                <td>{{employee.type == 0 ? 'Full-time' : 'Part-time'}}</td>
+                <td class="btn-action">
+                    <button pButton pRipple type="button" icon="pi pi-list" class="p-button-secondary" (click)="goToEmployeeDetails(employee.id)"></button>
+                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-success" (click)="updateEmployee(employee.id)"></button>
+                    <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-danger" (click)="deleteEmployee(employee.id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="12">No customers found.</td>
+            </tr>
+        </ng-template>
+    </p-table>  
+    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+    
+    <p-toast position="bottom-right"></p-toast>
+<!-- </div> -->
+
+ 

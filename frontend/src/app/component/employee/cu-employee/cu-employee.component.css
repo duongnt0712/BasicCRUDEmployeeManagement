@@ -1,0 +1,23 @@
+h1 {
+    text-align: center;
+    padding: 40px 0 20px 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+.form-group {
+    padding: 10px 0;
+}
+
+.form-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+button {
+    margin: 20px 0;
+}
