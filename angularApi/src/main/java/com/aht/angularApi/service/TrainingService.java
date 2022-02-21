@@ -1,8 +1,13 @@
 package com.aht.angularApi.service;
 
+import com.aht.angularApi.model.Employee;
 import com.aht.angularApi.model.Training;
 import com.aht.angularApi.repository.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,25 +21,18 @@ public class TrainingService {
         return trainingRepository.findById(id);
     }
 
-    public Training getByName(String name){
-        return trainingRepository.findByName(name);
-    }
-
-    public Training getByCode(int code){
-        return trainingRepository.findByCode(code);
-    }
-
     public List<Training> getAll(){
         return trainingRepository.findAll();
     }
 
-    public List<Training> getAllByStatus(int status){
-        return trainingRepository.findByStatus(status);
+    public Page<Training> getTrainingByPage(int pageNum, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize, Sort.by("id").descending());
+        return trainingRepository.findAll(pageable);
     }
 
-//    public List<Training> getAllByKeyword(String keyword) {
-//        return trainingRepository.findByKeyword(keyword);;
-//    }
+    public List<Training> getAllByName(String keyword) {
+        return trainingRepository.findByNameLike("%" + keyword + "%");
+    }
 
     public void add(Training training){
         trainingRepository.save(training);
@@ -56,4 +54,5 @@ public class TrainingService {
         training.setId(id);
         trainingRepository.save(training);
     }
+
 }

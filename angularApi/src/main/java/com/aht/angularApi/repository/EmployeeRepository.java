@@ -13,8 +13,6 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
-    Employee findByName(String name);
+    List<Employee> findByNameLike(String name);
     Employee findById(int id);
-    List<Employee> findByType(int type);
-    List<Employee> findBySex(int sex);
 }

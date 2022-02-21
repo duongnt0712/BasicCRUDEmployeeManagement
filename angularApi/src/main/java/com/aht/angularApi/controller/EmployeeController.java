@@ -28,14 +28,10 @@ public class EmployeeController {
         return new ResponseEntity(employeeService.getEmployeeById(id),HttpStatus.OK);
     }
 
-    @GetMapping("/employee/type")
-    public ResponseEntity getEmpByType(@Param("type")int type){
-        return new ResponseEntity(employeeService.getEmpByType(type),HttpStatus.OK);
-    }
-
-    @GetMapping("/employee/sex")
-    public ResponseEntity getEmpBySex(@Param("sex")int sex){
-        return new ResponseEntity(employeeService.getEmpBySex(sex),HttpStatus.OK);
+    @GetMapping("/employee/pages/{id}")
+    public ResponseEntity getEmpByPage(@PathVariable int id, @RequestParam("maxPerPage") int maxPerPage){
+        Page<Employee> employees = employeeService.getEmployeeByPage(id, maxPerPage);
+        return new ResponseEntity(employees, HttpStatus.OK);
     }
 
     @PostMapping("/employee")
@@ -52,7 +48,7 @@ public class EmployeeController {
 
     @DeleteMapping("/employee")
     public ResponseEntity deleteEmp(@Param("id") int id){
-        employeeService.removeEmpById(id);
+        employeeService.removeEmp(id);
         return new ResponseEntity("Deleted!",HttpStatus.OK);
     }
 
@@ -60,11 +56,5 @@ public class EmployeeController {
     public ResponseEntity updateEmp(@PathVariable int id,@RequestBody Employee employee){
         employeeService.updateEmp(id,employee);
         return new ResponseEntity("Updated!",HttpStatus.OK);
-    }
-
-    @GetMapping("/employee/pages/{id}")
-    public ResponseEntity getEmpPage(@PathVariable int id, @RequestParam("maxPerPage") int maxPerPage){
-        Page<Employee> employees = employeeService.getEmployeeByPage(id, maxPerPage);
-        return new ResponseEntity(employees, HttpStatus.OK);
     }
 }

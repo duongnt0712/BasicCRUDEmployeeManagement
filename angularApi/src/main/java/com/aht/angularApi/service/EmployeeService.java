@@ -26,12 +26,9 @@ public class EmployeeService {
         return employeeRepository.findById(id);
     }
 
-    public List<Employee> getEmpByType(int type){
-        return employeeRepository.findByType(type);
-    }
-
-    public List<Employee> getEmpBySex(int sex){
-        return employeeRepository.findBySex(sex);
+    public Page<Employee> getEmployeeByPage(int pageNum, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize, Sort.by("id").descending());
+        return employeeRepository.findAll(pageable);
     }
 
     public void addEmp(Employee employee){
@@ -42,7 +39,7 @@ public class EmployeeService {
         employeeRepository.saveAll(emps);
     }
 
-    public void removeEmpById(int id){
+    public void removeEmp(int id){
         employeeRepository.deleteById(id);
     }
 
@@ -55,8 +52,5 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
-    public Page<Employee> getEmployeeByPage(int pageNum, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNum - 1, pageSize, Sort.by("id").descending());
-        return employeeRepository.findAll(pageable);
-    }
+
 }

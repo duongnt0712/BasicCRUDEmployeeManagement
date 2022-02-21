@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public interface TrainingRepository extends JpaRepository<Training, Integer> {
     Training findById(int id);
-    Training findByCode(int code);
-    Training findByName(String name);
-    List<Training> findByStatus(int status);
+    List<Training> findByNameLike(String name);
 
 }
